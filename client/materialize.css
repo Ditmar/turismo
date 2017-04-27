@@ -14,7 +14,26 @@ src: local('Material Icons'), local('MaterialIcons-Regular'), url(http://fonts.g
 	letter-spacing: normal;
 	text-transform: none;
 	display: inline-block;
+	color:#000;
 	word-wrap: normal;
 	-webkit-font-feature-settings: 'liga';
 	-webkit-font-smoothing: antialiased;
+}
+nav .brand-logo {
+	color:#000;
+}
+nav ul a{
+	color:#000;
+}
+.row .col.s12{
+	color:#fff;
+}
+.light{
+	color:#000;
+}
+.center{
+	color:#000;	
+}
+h4,h5,h6{
+	color:#000;
 }

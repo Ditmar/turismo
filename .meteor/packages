@@ -23,3 +23,5 @@ materialize:materialize
 kadira:flow-router
 kadira:blaze-layout
 jquery
+accounts-password
+accounts-ui
