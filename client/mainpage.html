@@ -6,7 +6,12 @@
         <li><a href="#">home</a></li>
         <li><a href="#">Paquetes turisticos</a></li>
         <li><a href="#">Soporte Online</a></li>
-        <li><a href="#">{{>loginButtons}}</a></li>
+        {{#if currentUser}}
+          <li><a href="#" id="logout">Loggout {{username}}</a></li>
+        {{else}}
+          <li><a href="#" id="login">Login</a></li>  
+        {{/if}}
+        
 
       </ul>
 
@@ -14,12 +19,14 @@
         <li><a href="#">home</a></li>
         <li><a href="#">Paquetes turisticos</a></li>
         <li><a href="#">Soporte Online</a></li>
-        <li><a href="#">login</a></li>
+        <li><a href="#">Login</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-
+  <div class="row"> 
+    {{>mainModuleLoggin}}
+  </div>
   <div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot">
       <div class="container">
