@@ -53,7 +53,10 @@ Template.msn_template.helpers({
 		return Meteor.users.findOne({_id:this.idSource});
 	},
 	user_destination: function(){
-		return Meteor.users.findOne({_id:this.idDestination});
+		console.log(this.idSource);
+		console.log(Meteor.users.findOne({_id:this.idSource}));
+		
+		return Meteor.users.findOne({_id:this.idSource});
 	},
 	idMe: function(){
 		return Accounts.user()._id == this.idSource;	

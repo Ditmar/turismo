@@ -18,7 +18,10 @@ Meteor.startup(() => {
 				{
 					find(chat){
 						return Meteor.users.find({_id:chat.idSource});
-					},
+					}
+					
+				},
+				{
 					find(chat){
 						return Meteor.users.find({_id:chat.idDestination});
 						
