@@ -65,3 +65,9 @@ h4,h5,h6{
 #users_list{
 	cursor: pointer;
 }
+.rectangle_hidden{
+	height: 400px;
+	width: 800px;
+	overflow:scroll;
+	overflow-x:hidden;
+}
