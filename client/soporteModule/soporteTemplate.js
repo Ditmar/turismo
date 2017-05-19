@@ -52,14 +52,11 @@ Template.msn_template.helpers({
 	user_source: function(){
 		return Meteor.users.findOne({_id:this.idSource});
 	},
-	user_destination: function(){
-		// esto muiestra los datos de los usuarios 
-		// por el source
-		if(this.idSource == null){
-			
-			return;
+	user_destination: function(){		
+		if(this.idSource != undefined){
+			return Meteor.users.findOne({_id:this.idSource});s
 		}
-		return Meteor.users.findOne({_id:this.idSource});
+		return;
 	},
 	idMe: function(){
 		return Accounts.user()._id == this.idSource;	
