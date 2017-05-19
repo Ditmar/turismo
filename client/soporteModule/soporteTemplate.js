@@ -53,9 +53,12 @@ Template.msn_template.helpers({
 		return Meteor.users.findOne({_id:this.idSource});
 	},
 	user_destination: function(){
-		console.log(this.idSource);
-		console.log(Meteor.users.findOne({_id:this.idSource}));
-		
+		// esto muiestra los datos de los usuarios 
+		// por el source
+		if(this.idSource == null){
+			
+			return;
+		}
 		return Meteor.users.findOne({_id:this.idSource});
 	},
 	idMe: function(){
