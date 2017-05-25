@@ -4,9 +4,6 @@ Meteor.startup(() => {
 	Meteor.publishComposite("getMSN",function(idUs,idMe){
 		return {
 			find(){
-				console.log(idUs);
-				console.log(idMe);
-				console.log(CHAT.find({$or:[{$and:[{idSource:idMe,idDestination:idUs}]},{$and:[{idSource:idUs,idDestination:idMe}]}]}).fetch())
 				return CHAT.find(
 					{$or:
 						[
