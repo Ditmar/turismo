@@ -11,5 +11,4 @@ $.fn.resizeDiv = function(callback){
 	}
 	var ant = $(this).height();
 	var interval = setInterval(this.resizeEvent,500);
-
 }

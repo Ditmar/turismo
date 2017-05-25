@@ -18,7 +18,7 @@ ecmascript@0.7.2              # Enable ECMAScript2015+ syntax in app code
 shell-server@0.2.3            # Server-side component of the `meteor shell` command
 
 
-twbs:bootstrap
+materialize:materialize
 kadira:flow-router
 kadira:blaze-layout
 jquery
@@ -27,3 +27,4 @@ accounts-ui
 alanning:roles
 aldeed:collection2
 reywood:publish-composite
+meteorhacks:subs-manager
