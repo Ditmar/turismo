@@ -38,6 +38,15 @@ Meteor.startup(() => {
 		}]
 	});
 	Meteor.methods({
+		"checkAccount": function(username){
+			
+			var t = Meteor.users.find({username:username}).fetch();
+			console.log(t);
+			if(t.length == 1){
+				return true;
+			}
+			return false;
+		},
 		"checkConnection": function(id){
 			// select * from connect where idus=id and stade = true
 			var result = CONNECT.find({idUs:id,stade:true}).fetch();
