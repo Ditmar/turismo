@@ -7,10 +7,34 @@ Template.msn_template.onRendered(function(){
 		$(".rectangle_hidden").animate({scrollTop:num},500);
 	});
 });
-
+var imagesHandler = new SubsManager();
+Template.templateSupport.onCreated(function() {
+	this.ready = new ReactiveVar(false);
+	this.currentUpload = new ReactiveVar(false);
+	var self = this;
+	this.autorun(function(){
+		var handler = imagesHandler.subscribe("files");
+		if (handler.ready()) {
+			self.ready.set(true);
+		}
+	});
+});
 Template.templateSupport.helpers({
+	imageFile: function() {
+		if (Template.instance().idIMG != null) {
+			var id = Template.instance().idIMG;	
+		} else {
+			return false;
+		}
+		
+		return IMAGES.findOne({_id: id});
+	},
+	ifUploading: function() {
+
+		return Template.instance().currentUpload.get();
+	},
 	ready: function(){
-		return FlowRouter.subsReady("getConnections");
+		return FlowRouter.subsReady("getConnections") && Template.instance().ready.get();
 	},
 	user_connection_list: function(){
 		return CONNECT.find();
@@ -20,9 +44,38 @@ Template.templateSupport.helpers({
 	}
 });
 Template.templateSupport.events({
-	"submit form": function(e){
+	"change #file": function(e, template) {
+		if (e.currentTarget.files && e.currentTarget.files[0]) {
+      		// We upload only one file, in case
+      		// multiple files were selected
+      		const upload = IMAGES.insert({
+        		file: e.currentTarget.files[0],
+        		streams: 'dynamic',
+        		chunkSize: 'dynamic'
+      		}, false);
+      		upload.on('start', function () { 
+        		template.currentUpload.set(true);
+      		});
+		    upload.on('end', function (error, fileObj) {
+		    	console.log(fileObj);
+		    	template.idIMG = fileObj._id;
+		    	if (error) {
+		          alert('Error during upload: ' + error);
+		        } else {
+		          alert('File "' + fileObj.name + '" successfully uploaded');
+		        }
+		        template.currentUpload.set(false);
+		      });
+      		upload.start();
+    	}
+	},
+	"submit form": function(e) {
 		var msn = e.target.msn.value;
 		if(idDestination.get() != undefined) {
+			if (e.target.files.value != "") {
+				msn = "<img src='" + e.target.files.value + "' width='200'/>";
+				msn += "<a href='" + e.target.files.value + "?download=true'  target='_parent'>Descargar</a>";
+			}
 			obj ={
 				idSource: Accounts.user()._id,
 				idDestination: idDestination.get(),
@@ -30,6 +83,7 @@ Template.templateSupport.events({
 				date: new Date()
 			}
 			e.target.msn.value = "";
+			e.target.files.value = "";
 			Meteor.call("addChat",obj,function(){
 			});	
 		}else{

@@ -1,6 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(() => {
+	Meteor.publish('files', function () {
+    	return IMAGES.find().cursor;
+  	});
 	Meteor.publishComposite("getMSN",function(idUs,idMe){
 		return {
 			find(){
@@ -36,6 +39,12 @@ Meteor.startup(() => {
 				return Meteor.users.find({_id:connect.idUs});
 			}
 		}]
+	});
+	Meteor.publish("getUsuarios", function(){
+		return Meteor.users.find();
+	});
+	Meteor.publish("getChat", function(){
+		return CHAT.find();
 	});
 	Meteor.methods({
 		"checkAccount": function(username){

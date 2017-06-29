@@ -14,7 +14,6 @@ Template.templateClient.onCreated(function() {
 Template.templateClient.onRendered(function(){
 	//alert("result.value");
 	Meteor.call("checkConnection",Accounts.user()._id,function(err,result){
-		
 		reactiveCheck.set(result.value);
 		SESIONID.set(result.id);
 	});

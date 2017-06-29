@@ -17,7 +17,7 @@
 							<div class="col s10">
 								<div class="card-panel deep-purple darken-1">
 									<span class="white-text"><B>{{user_source.username}}  </B>
-									{{message}}
+									{{{message}}}
 									</span>
 								</div>
 							</div>
@@ -27,7 +27,7 @@
 							<div class="col s10">
 								<div class="card-panel teal">
 									<span class="white-text"><B>{{user_destination.username}}</B>
-									{{message}}
+									{{{message}}}
 									</span>
 								</div>
 							</div>
@@ -66,9 +66,17 @@
 					<form action="" method="POST" class="chatform">
 						<div class="input-field"> 
 							<div class="form-group">
-								
 								<span class="help-block"></span>
 								<input type="text" class="form-control" id="" name="msn" placeholder="Messages">
+								{{#if ifUploading}}
+									Uploading <b>{{file.name}}</b>:
+    								<span id="progress">{{progress.get}}%</span>
+								{{else}}
+									<input type="file" id="file">
+									<img src="{{imageFile.link}}" alt="">
+									<input type="hidden" id="imgid" name="files" value="{{imageFile.link}}">
+								{{/if}}
+
 							</div>
 						</div>	
 					</form>

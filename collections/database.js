@@ -1,5 +1,15 @@
 CHAT = new  Mongo.Collection("chat");
 CONNECT = new Mongo.Collection("connect");
+IMAGES = new FilesCollection({
+  storagePath: '/data',
+  downloadRoute: '/files/images',
+  collectionName: 'images',
+  chunkSize: 1024 * 2048,
+  throttle: 1024 * 512,
+  permissions: 0755,
+  allowClientCode: false,
+  cacheControl: 'public, max-age=31536000'
+});
 var chatSchema = new SimpleSchema({
 	idSource: {
 		type:String

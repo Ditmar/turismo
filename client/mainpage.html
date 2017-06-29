@@ -31,9 +31,17 @@
 
 
   <div class="container">
+    {{#if ready}}
+        <ul>
+        {{#each i in getMsn}}
+            <li> {{i.username}}  {{i.coments}}</li>
+        {{/each}}
+        </ul>
+    {{/if}}
+    
     {{>Template.dynamic template=content}}
   </div>
-
+  
 
   <div class="parallax-container valign-wrapper">
     <div class="section no-pad-bot">
